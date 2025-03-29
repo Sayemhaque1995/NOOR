@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOOR - Exquisite Fragrances</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Optional: Add Font Awesome for real icons -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
+
+    <style>
+        /* --- Global Styles & Reset --- */
+        :root {
+            --color-background: #121212;
+            --color-text: #e0e0e0;
+            --color-primary: #D4AF37; /* Gold accent */
+            --color-primary-darker: #b89b32; /* Darker gold for hover */
+            --color-secondary: #1a1a1a; /* Slightly lighter dark for cards */
+            --color-white: #ffffff;
+            --font-primary: 'Playfair Display', serif;
+            --font-secondary: 'Lato', sans-serif;
+            --transition-speed: 0.4s; /* Slightly slower for smoother feel */
+            --border-radius: 5px; /* Consistent border radius */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px; /* Base font size */
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.7; /* Increased line height */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            letter-spacing: 0.5px; /* Subtle letter spacing */
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3 {
+            font-family: var(--font-primary);
+            color: var(--color-white);
+            margin-bottom: 1.5rem; /* More space below headings */
+            font-weight: 700;
+            letter-spacing: 1.5px; /* Wider spacing for headings */
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 3.8rem; }
+        h2 { font-size: 2.8rem; }
+        h3 { font-size: 1.9rem; }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-weight: 300;
+            max-width: 65ch; /* Improve readability */
+        }
+        /* Center paragraphs within centered text containers */
+        .text-center p {
+             margin-left: auto;
+             margin-right: auto;
+        }
+
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+
+        a:hover {
+            color: var(--color-white);
+        }
+
+        strong {
+            font-weight: 700;
+            color: var(--color-white);
+        }
+
+        /* --- Layout & Containers --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 7rem 0; /* More vertical padding */
+            overflow: hidden; /* Contain animations */
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.8rem 0; /* Slightly more padding */
+            z-index: 1000;
+            transition: background-color var(--transition-speed) ease, padding var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(18, 18, 18, 0.97); /* Darker, less transparent */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            padding: 1.2rem 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: var(--font-primary);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 3rem; /* More spacing */
+        }
+
+        .nav-links a {
+            color: var(--color-white);
+            font-family: var(--font-secondary);
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px; /* More letter spacing */
+            position: relative;
+            padding-bottom: 0.5rem; /* More space for underline */
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px; /* Thicker underline */
+            background-color: var(--color-primary);
+            transition: width var(--transition-speed) ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+         .nav-links a:hover {
+             color: var(--color-primary); /* Highlight text on hover */
+         }
+         .nav-links a.active {
+              color: var(--color-primary); /* Keep active link highlighted */
+         }
+
+        /* --- Hero Section --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--color-white);
+            /* Unsplash Image - Luxury, Dark, Perfume */
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('https://source.unsplash.com/random/1920x1080/?luxury,dark,perfume,abstract') no-repeat center center/cover;
+            background-attachment: fixed;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        #hero h1 {
+            color: var(--color-white);
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.6);
+            margin-bottom: 1.5rem;
+            font-size: 4.2rem; /* Larger Hero H1 */
+        }
+
+        #hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: var(--color-text);
+            font-weight: 300;
+            max-width: 60ch;
+            margin-left: auto; margin-right: auto; /* Center paragraph */
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-primary);
+            color: var(--color-background); /* High contrast */
+            padding: 1rem 2.5rem; /* Larger button */
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: 1px solid var(--color-primary); /* Subtle border */
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, color var(--transition-speed) ease;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2); /* Subtle glow */
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-primary-darker);
+            border-color: var(--color-primary-darker);
+            color: #000; /* Darker text on hover */
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35); /* Enhanced glow */
+        }
+
+        /* --- About Section --- */
+        #about {
+            background-color: var(--color-background); /* Match main background */
+        }
+        .about-content {
+            display: flex;
+            align-items: center; /* Center vertically */
+            gap: 5rem; /* More gap */
+        }
+        .about-text {
+            flex: 1.2; /* Give text slightly more space */
+        }
+        .about-image {
+            flex: 1;
+            max-width: 480px; /* Slightly larger image */
+        }
+        .about-image img {
+            width: 100%;
+            height: auto;
+            max-height: 650px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4); /* Deeper shadow */
+            filter: contrast(1.05) saturate(1.1); /* Enhance image slightly */
+        }
+         .about-text h2 {
+             color: var(--color-primary);
+             margin-bottom: 2rem;
+         }
+         .ceo-info {
+             margin-top: 3rem;
+             padding-top: 2rem;
+             border-top: 1px solid rgba(212, 175, 55, 0.25); /* Slightly stronger separator */
+         }
+         .ceo-info h3 {
+            font-size: 1.6rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+         }
+         .ceo-info p {
+             font-size: 1rem;
+             margin-bottom: 0.6rem;
+             color: #ccc;
+             max-width: none; /* Override default p width */
+         }
+          .ceo-info a {
+             font-weight: normal;
+             color: var(--color-primary);
+         }
+         .ceo-info a:hover {
+             color: var(--color-white);
+         }
+
+        /* --- Collections Section --- */
+         #collections {
+             background-color: var(--color-secondary); /* Use secondary dark for contrast */
+         }
+        #collections h2 {
+            text-align: center;
+            margin-bottom: 5rem; /* More space before grid */
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Slightly larger min width */
+            gap: 3rem; /* More gap */
+        }
+
+        .product-card {
+            background-color: var(--color-background); /* Darker card background */
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            text-align: center;
+            padding: 2.5rem 2rem;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid rgba(212, 175, 55, 0.1); /* Subtle gold border */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Base shadow */
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px); /* Lift more */
+            box-shadow: 0 20px 45px rgba(0,0,0,0.5); /* Softer, larger hover shadow */
+            border-color: rgba(212, 175, 55, 0.3); /* Highlight border */
+        }
+
+        .product-image-wrapper {
+            height: 280px; /* Taller image area */
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-card img {
+            max-height: 100%;
+            max-width: 85%;
+            object-fit: contain;
+            transition: transform var(--transition-speed) ease;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3)); /* Shadow on bottle */
+        }
+
+        .product-card:hover img {
+             transform: scale(1.07); /* Slightly larger scale */
+        }
+
+        .product-card h3 {
+            color: var(--color-primary);
+            font-size: 1.7rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .product-card p {
+            font-size: 0.95rem; /* Slightly larger text */
+            color: #bbb; /* Lighter gray */
+            margin-bottom: 2rem;
+            flex-grow: 1;
+            max-width: none;
+        }
+
+        .product-card .cta-button {
+            padding: 0.8rem 1.8rem;
+            font-size: 0.85rem;
+            margin-top: auto;
+        }
+
+
+        /* --- Experience Section (Example) --- */
+        #experience {
+             /* Unsplash Image - Craftsmanship, Ingredients */
+             background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://source.unsplash.com/random/1920x800/?perfume,ingredients,craftsmanship,texture') no-repeat center center/cover;
+             background-attachment: fixed;
+             text-align: center;
+             color: var(--color-white);
+             padding: 8rem 0; /* More padding */
+        }
+        #experience .container {
+            max-width: 800px; /* Constrain content width */
+        }
+
+        #experience h2 {
+             color: var(--color-primary);
+             margin-bottom: 2rem;
+        }
+        #experience p {
+             margin: 0 auto 2.5rem auto;
+             font-size: 1.2rem; /* Larger text */
+             line-height: 1.8;
+        }
+
+
+        /* --- Contact Section --- */
+        #contact {
+            background-color: var(--color-secondary);
+            text-align: center;
+        }
+        #contact .container {
+            max-width: 700px; /* Constrain width */
+        }
+        #contact h2 {
+            margin-bottom: 3rem;
+        }
+
+        #contact p {
+            margin: 0 auto 2rem auto;
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        .contact-info a {
+            color: var(--color-primary);
+            font-weight: 400; /* Normal weight */
+            display: inline-block;
+            margin: 0 1rem;
+        }
+         #contact .contact-details p {
+             margin-bottom: 0.8rem;
+         }
+         #contact .contact-details a {
+             font-weight: normal;
+         }
+
+
+        /* --- Footer --- */
+        footer {
+            background-color: #0a0a0a; /* Very dark */
+            color: #999; /* Lighter gray for footer */
+            text-align: center;
+            padding: 3rem 0; /* More padding */
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.15); /* Subtle gold top border */
+            letter-spacing: 0.5px;
+        }
+
+        .social-links {
+             margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            margin: 0 1rem;
+            color: #aaa;
+            font-size: 1rem; /* Base size for text/icons */
+            transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+            display: inline-block; /* Needed for transform */
+        }
+        .social-links a:hover {
+             color: var(--color-primary);
+             transform: scale(1.1); /* Slight scale on hover */
+        }
+        /* Placeholder styles for text social links */
+        .social-links .icon-placeholder {
+             display: inline-block;
+             width: 35px; /* Larger */
+             height: 35px;
+             line-height: 35px;
+             border: 1px solid #666; /* Darker border */
+             border-radius: 50%;
+             font-size: 0.8rem;
+             vertical-align: middle;
+             transition: border-color var(--transition-speed) ease;
+             font-weight: bold;
+             color: #aaa;
+        }
+        .social-links a:hover .icon-placeholder {
+             border-color: var(--color-primary);
+             color: var(--color-primary);
+        }
+        footer p {
+            max-width: none;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+
+        /* --- Animations & Transitions --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px); /* Start slightly lower */
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered delays */
+        .product-card.fade-in.visible:nth-child(1) { transition-delay: 0s; }
+        .product-card.fade-in.visible:nth-child(2) { transition-delay: 0.15s; }
+        .product-card.fade-in.visible:nth-child(3) { transition-delay: 0.3s; }
+        /* etc. Make sure the 'visible' class is part of the selector for delay */
+
+
+        /* --- Responsiveness --- */
+        @media (max-width: 992px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.4rem; }
+            h3 { font-size: 1.7rem; }
+            section { padding: 5rem 0; }
+            .about-content { flex-direction: column; text-align: center; align-items: center; gap: 3rem; }
+            .about-image { margin-top: 0; max-width: 70%; order: -1; }
+            .about-text { text-align: center; flex: 1; } /* Reset flex basis */
+             .about-text p, .ceo-info p { margin-left: auto; margin-right: auto;} /* Center paragraphs */
+            .ceo-info { text-align: center; }
+            #hero h1 { font-size: 3.5rem; }
+            #hero p { font-size: 1.1rem; }
+        }
+
+        @media (max-width: 768px) {
+            html { font-size: 15px; }
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+            h3 { font-size: 1.6rem; }
+
+            .navbar { padding: 0 1.5rem; }
+            .logo { font-size: 1.9rem; letter-spacing: 2px;}
+            .nav-links li { margin-left: 2rem; } /* Adjust spacing */
+
+            /* Mobile Nav */
+            .menu-toggle {
+                 display: block;
+                 background: none; border: none;
+                 color: white; font-size: 2rem;
+                 cursor: pointer; padding: 5px; z-index: 1001; /* Above nav */
+                 position: relative; /* Needed for z-index vs nav */
+            }
+            .nav-links {
+                 position: fixed; /* Fixed position */
+                 top: 0;
+                 left: 0;
+                 width: 100%;
+                 height: 100vh; /* Full height */
+                 background: rgba(18, 18, 18, 0.98); /* Dark overlay */
+                 backdrop-filter: blur(5px); /* Blur background */
+                 flex-direction: column;
+                 align-items: center;
+                 justify-content: center; /* Center links vertically */
+                 padding: 0; /* Remove padding */
+                 margin: 0; /* Reset margin */
+                 opacity: 0; /* Start hidden */
+                 visibility: hidden;
+                 transform: translateY(-100%); /* Slide in from top */
+                 transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease, transform var(--transition-speed) ease;
+                 z-index: 1000; /* Below toggle but above content */
+            }
+            .nav-links.active {
+                 opacity: 1;
+                 visibility: visible;
+                 transform: translateY(0);
+            }
+            .nav-links li {
+                margin: 1.5rem 0; /* Vertical spacing */
+                margin-left: 0;
+                width: 100%;
+                text-align: center;
+                opacity: 0; /* Fade in list items */
+                transform: translateY(20px);
+                transition: opacity 0.3s ease-out 0.2s, transform 0.3s ease-out 0.2s;
+            }
+            .nav-links.active li { /* Animate list items when menu is active */
+                opacity: 1;
+                transform: translateY(0);
+            }
+            /* Stagger list item animation */
+            .nav-links.active li:nth-child(2) { transition-delay: 0.25s; }
+            .nav-links.active li:nth-child(3) { transition-delay: 0.3s; }
+            .nav-links.active li:nth-child(4) { transition-delay: 0.35s; }
+            .nav-links.active li:nth-child(5) { transition-delay: 0.4s; }
+
+
+             .nav-links a {
+                 display: block;
+                 padding: 0.8rem 0;
+                 font-size: 1.3rem; /* Larger text for mobile nav */
+                 color: var(--color-white); /* Ensure white text */
+             }
+              .nav-links a:hover, .nav-links a.active {
+                  color: var(--color-primary); /* Highlight on hover/active */
+              }
+             .nav-links a::after { /* Center underline */
+                 left: 50%;
+                 transform: translateX(-50%);
+                 bottom: 5px; /* Adjust position */
+             }
+
+
+            #hero { min-height: 90vh; height: auto; } /* Ensure hero isn't too short */
+            #hero h1 { font-size: 2.8rem; }
+            #hero p { font-size: 1rem; }
+
+            .container { padding: 0 1rem; }
+            .product-grid { grid-template-columns: 1fr; gap: 2.5rem;}
+            .about-content { gap: 2rem; }
+            .about-image { max-width: 80%; }
+            section { padding: 4rem 0;}
+             #experience { padding: 6rem 0; background-attachment: scroll; /* Disable fixed on mobile */ }
+        }
+
+         @media (max-width: 480px) {
+             html { font-size: 14px; }
+             h1 { font-size: 2.2rem; letter-spacing: 1px;}
+             h2 { font-size: 1.9rem; letter-spacing: 1px;}
+             h3 { font-size: 1.5rem; letter-spacing: 0.5px;}
+             .logo { font-size: 1.7rem; letter-spacing: 1.5px;}
+             .cta-button { padding: 0.8rem 1.8rem; font-size: 0.9rem;}
+             #hero h1 { font-size: 2.5rem;}
+         }
+
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="navbar">
+            <a href="#hero" class="logo">NOOR</a>
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span> <!-- Lines for burger icon (can be styled via CSS) -->
+                <span></span>
+                <span></span>
+                ☰ <!-- Fallback Text/Icon -->
+            </button>
+            <nav>
+                <ul class="nav-links" id="nav-list">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content fade-in">
+                <h1>NOOR</h1>
+                <p>An Aura of Light and Luxury. Discover Your Signature Scent.</p>
+                <a href="#collections" class="cta-button">Explore Collections</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container about-content">
+                <div class="about-text fade-in">
+                    <h2>The Essence of Light</h2>
+                    <p>NOOR, meaning 'light' in Arabic, represents more than just fragrance. It embodies illumination, clarity, and the radiant energy within. Our perfumes are meticulously crafted with the finest, ethically sourced ingredients from around the globe, creating scents that are both timeless and contemporary.</p>
+                    <p>We believe perfume is an intimate signature, an invisible yet powerful accessory completing your presence. Each NOOR creation is a sensory journey, designed to evoke emotion, inspire confidence, and leave an unforgettable impression.</p>
+
+                    <!-- CEO Information -->
+                    <div class="ceo-info">
+                        <h3>A Word from Our Founder</h3>
+                        <p><strong>Sajnur Rahman</strong>, CEO & Visionary behind NOOR Fragrances, envisioned a brand capturing the luminous spirit within everyone. His unwavering passion for unparalleled quality and olfactory artistry drives our commitment to crafting truly exceptional and luxurious scents.</p>
+                        <p>Connect:
+                            <a href="mailto:nsaj841@gmail.com">nsaj841@gmail.com</a> |
+                            <a href="tel:+19296736190">+1 (929) 673-6190</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="about-image fade-in">
+                     <!-- Unsplash Image - Elegant Lifestyle -->
+                    <img src="https://source.unsplash.com/random/600x700/?elegant,luxury,lifestyle,portrait" alt="Elegant lifestyle visual for Noor brand">
+                </div>
+            </div>
+        </section>
+
+        <!-- Collections Section -->
+        <section id="collections">
+            <div class="container">
+                <h2 class="fade-in text-center">Our Signature Collections</h2>
+                <div class="product-grid">
+                    <!-- Product Card 1 -->
+                    <div class="product-card fade-in">
+                        <div class="product-image-wrapper">
+                             <!-- Unsplash Image - Perfume Bottle (Light/Citrus/Floral) -->
+                            <img src="https://source.unsplash.com/random/400x400/?perfume,bottle,light,gold,citrus" alt="Noor Aura Perfume Bottle">
+                        </div>
+                        <div>
+                            <h3>Aura</h3>
+                            <p>A radiant symphony of sparkling citrus top notes, a delicate floral heart, and a warm, embracing amber base. Luminous and uplifting.</p>
+                            <a href="#" class="cta-button">Discover Aura</a>
+                        </div>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="product-card fade-in">
+                        <div class="product-image-wrapper">
+                             <!-- Unsplash Image - Perfume Bottle (Elegant/Sparkle/Modern) -->
+                            <img src="https://source.unsplash.com/random/400x400/?perfume,bottle,elegant,crystal,modern" alt="Noor Éclat Perfume Bottle">
+                        </div>
+                         <div>
+                            <h3>Éclat</h3>
+                            <p>Juicy bergamot and pear illuminate a sophisticated core of white jasmine petals and velvety musk. Effortlessly chic and vibrant.</p>
+                            <a href="#" class="cta-button">Discover Éclat</a>
+                        </div>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="product-card fade-in">
+                        <div class="product-image-wrapper">
+                            <!-- Unsplash Image - Perfume Bottle (Dark/Woody/Mysterious) -->
+                           <img src="https://source.unsplash.com/random/400x400/?perfume,bottle,dark,wood,luxury,mysterious" alt="Noor Mystique Perfume Bottle">
+                        </div>
+                        <div>
+                            <h3>Mystique</h3>
+                            <p>An enigmatic fusion of dark spices, rare oud wood, and a seductive whisper of black vanilla orchid. Deep, captivating, and unforgettable.</p>
+                            <a href="#" class="cta-button">Discover Mystique</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+             <div class="container fade-in text-center">
+                 <h2>The Art of Perfumery</h2>
+                 <p>Immerse yourself in the meticulous craftsmanship behind every NOOR fragrance. We harmoniously blend time-honored techniques with modern innovation to capture the pure essence of nature's most precious aromatic treasures. Each drop tells a story, exquisitely crafted to perfection.</p>
+                 <a href="#" class="cta-button">Explore Our Craft</a>
+             </div>
+        </section>
+
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container fade-in text-center">
+                <h2>Connect With NOOR</h2>
+                <p>For inquiries, bespoke consultations, collaborations, or to simply share your NOOR experience, we invite you to reach out. We cherish the connection with our discerning clientele.</p>
+                <div class="contact-info contact-details">
+                    <p>Email: <a href="mailto:concierge@noorfragrance.com">concierge@noorfragrance.com</a></p> <!-- Example of a more "luxury" email -->
+                    <p>Phone: <a href="tel:+19296736190">+1 (929) 673-6190</a></p>
+                    <p style="margin-top: 2rem;">Follow our journey on social media</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+             <div class="social-links">
+                 <a href="#" aria-label="Instagram"><span class="icon-placeholder">IG</span></a>
+                 <a href="#" aria-label="Facebook"><span class="icon-placeholder">FB</span></a>
+                 <a href="#" aria-label="Pinterest"><span class="icon-placeholder">P</span></a> <!-- Added Pinterest -->
+             </div>
+            <p>© 2024 NOOR Fragrances. All Rights Reserved. Founder: Sajnur Rahman</p>
+            <p>Crafted with Light, Luxury, and Passion.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const header = document.getElementById('main-header');
+            const navList = document.getElementById('nav-list');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+            const sections = document.querySelectorAll('main section[id]');
+
+            // --- Header Scroll Effect ---
+            const handleScroll = () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                highlightNavOnScroll(); // Update nav highlight on scroll
+            };
+            window.addEventListener('scroll', handleScroll);
+
+            // --- Mobile Menu Toggle ---
+             if (menuToggle && navList) {
+                 menuToggle.addEventListener('click', () => {
+                     const isActive = navList.classList.toggle('active');
+                     menuToggle.setAttribute('aria-expanded', isActive);
+                     // Optional: Prevent body scroll when menu is open
+                     document.body.style.overflow = isActive ? 'hidden' : '';
+                 });
+             }
+
+
+            // --- Smooth Scrolling & Close Mobile Menu ---
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu if open
+                        if (navList.classList.contains('active')) {
+                            navList.classList.remove('active');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                            document.body.style.overflow = ''; // Re-enable body scroll
+                        }
+
+                        // Instantly update active link state after click (visual feedback)
+                         navLinks.forEach(a => a.classList.remove('active'));
+                         this.classList.add('active');
+                    }
+                });
+            });
+
+            // --- Fade-in Animation on Scroll ---
+            const fadeElems = document.querySelectorAll('.fade-in');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Trigger a bit later
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // observer.unobserve(entry.target); // Keep observing if needed
+                    }
+                     // Optional: Remove visible class when scrolling up past it
+                     // else if (!entry.isIntersecting && entry.boundingClientRect.top > 0) {
+                     //     entry.target.classList.remove('visible');
+                     // }
+                });
+            }, observerOptions);
+
+            fadeElems.forEach(elem => {
+                observer.observe(elem);
+            });
+
+            // --- Active Nav Link Highlighting on Scroll ---
+            const highlightNavOnScroll = () => {
+                let currentSectionId = '';
+                const scrollPosition = window.pageYOffset;
+                const headerHeight = header.offsetHeight;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - headerHeight - 60; // Adjusted offset
+                    const sectionBottom = sectionTop + section.offsetHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                 // Special case for Hero section when near the top
+                 if (scrollPosition < sections[0].offsetTop - headerHeight - 60 ) {
+                      currentSectionId = 'hero';
+                  }
+                  // Special case for contact section if scrolled fully to bottom
+                 if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) { // Check if near bottom
+                      currentSectionId = 'contact';
+                 }
+
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+             // Initial call to set state on load and handle scroll
+             handleScroll(); // Call initially to set header state and nav highlight
+
+        });
+    </script>
+
+</body>
+</html>
